@@ -1,6 +1,6 @@
 @import "https://unpkg.com/open-props";
 
-.media-scroller{
+.media-scroller {
     display: grid;
     gap: var(--size-1);
     grid-auto-flow: column;
@@ -10,7 +10,7 @@
 }
 
 
-.media-element{
+.media-element {
     display: grid;
     gap: var(--size-1);
     padding: var(--size-1);
@@ -18,19 +18,19 @@
     border-radius: var(--radius-1);
 }
 
-.media-element > img{
+.media-element>img {
     inline-size: 100%;
     aspect-ratio: 1/1;
     object-fit: cover;
 }
 
 .container {
-  inline-size: min(100%, -4rem, 70rem);
-  flex-direction: column;
+    inline-size: min(100%, -4rem, 70rem);
+    flex-direction: column;
 }
 
 
-.flow{
+.flow {
     display: grid;
     gap: var(size-1);
 }
