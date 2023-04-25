@@ -7,70 +7,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>My Website</title>
-    <link rel="stylesheet" href="{%static 'base.css'%}">
+    <link rel="stylesheet" href="{%static 'main.css'%}">
+    <link rel="stylesheet" href="{%static 'font-awesome.min.css'%}">
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/db3ab3d164.js" crossorigin="anonymous"></script>
+
 </head>
 
-<body>
-    <main>
-        <h1>Welcome to My Website</h1>
-    </main>
-    <div class="media-scroller">
-        <div class="media-element">
-            <div class="media-element__image">
-                <img src="https://picsum.photos/200/300" alt="">
-            </div>
+<body class="is-preload">
+
+    <!-- Wrapper -->
+        <div id="wrapper" class="divided">
+
+            <!-- One -->
+                <section class="banner style1 orient-left content-align-left image-position-right fullscreen onload-image-fade-in onload-content-fade-right">
+                    <div class="content">
+                        <h1>HUMAN ID</h1>
+                        <p class="major">Select an image from your gallery to scan <a href="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500">(reference).</a> Our AI powered program will scan it and verify its identity</a>.</p>
+                        <ul class="actions stacked">
+                            <li><a href="#first" class="button big wide smooth-scroll-middle">Get Started</a></li>
+                            <li><form id="upload-form">
+                                {% csrf_token %}
+                                <input type="file" name="image" id="image" accept="image/*" required>
+                                <input type="submit" value="Upload">
+                            </form></li>
+                        </ul>
+                    </div>
+                    <div class="image">
+                        <img src="https://picsum.photos/200" alt="" />
+                    </div>
+                </section>
+
+            <!-- Footer -->
+                <footer class="wrapper style1 align-center">
+                    <div class="inner">
+                        <ul class="icons">
+                            <li><a href="#" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a></li>
+                            <li><a href="#" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a></li>
+                            <li><a href="#" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a></li>
+                            <li><a href="#" class="icon brands style2 fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+                            <li><a href="#" class="icon style2 fa-envelope"><span class="label">Email</span></a></li>
+                        </ul>
+                        <p>&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+                    </div>
+                </footer>
+
         </div>
-        <div class="media-element">
-            <div class="media-element__image">
-                <img src="https://picsum.photos/200/301" alt="">
-            </div>
-        </div>
-        <div class="media-element">
-            <div class="media-element__image">
-                <img src="https://picsum.photos/200/302" alt="">
-            </div>
-        </div>
-        <div class="media-element">
-            <div class="media-element__image">
-                <img src="https://picsum.photos/200/303" alt="">
-            </div>
-        </div>
-        <div class="media-element">
-            <div class="media-element__image">
-                <img src="https://picsum.photos/200/304" alt="">
-            </div>
-        </div>
-        <div class="media-element">
-            <div class="media-element__image">
-                <img src="https://picsum.photos/200/305" alt="">
-            </div>
-        </div>
-        <div class="media-element">
-            <div class="media-element__image">
-                <img src="https://picsum.photos/200/306" alt="">
-            </div>
-        </div>
-        <div class="media-element">
-            <div class="media-element__image">
-                <img src="https://picsum.photos/200/307" alt="">
-            </div>
-        </div>
-        <div class="media-element">
-            <div class="media-element__image">
-                <img src="https://picsum.photos/200/308" alt="">
-            </div>
-        </div>
-        <div class="media-element">
-            <div class="media-element__image">
-                <img src="https://picsum.photos/200/309" alt="">
-            </div>
-        </div>
-        <div class="media-element">
-            <div class="media-element__image">
-                <img src="https://picsum.photos/200/310" alt="">
-            </div>
-        </div>
+        <script src="{% static 'jquery.min.js' %}"></script>
+        <script src="{% static 'jquery.scrollex.min.js' %}"></script>
+        <script src="{% static 'jquery.scrolly.min.js' %}"></script>
+        <script src="{% static 'browser.min.js' %}"></script>
+        <script src="{% static 'breakpoints.min.js' %}"></script>
+        <script src="{% static 'util.js' %}"></script>
+        <script src="{% static 'main.js' %}"></script>  
 
 </body>
 
