@@ -26,12 +26,11 @@
                         <h1>HUMAN ID</h1>
                         <p class="major">Select an image from your gallery to scan <a href="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500">(reference).</a> Our AI powered program will scan it and verify its identity</a>.</p>
                         <ul class="actions stacked">
-                            <li><a href="#first" class="button big wide smooth-scroll-middle">Get Started</a></li>
-                            <li><form id="upload-form">
-                                {% csrf_token %}
-                                <input type="file" name="image" id="image" accept="image/*" required>
-                                <input type="submit" value="Upload">
-                            </form></li>
+                            <li><a href="#first" class="button big wide smooth-scroll-middle">Get Started</a></li><br>
+                            <button id="start-camera">Start Camera</button><br>
+                            <video id="video" width="320" height="240" autoplay hidden></video><br>
+                            <button id="click-photo">Click Photo</button><br>   
+                            <canvas id="canvas" width="320" height="240" ></canvas>
                         </ul>
                     </div>
                     <div class="image">
@@ -61,6 +60,7 @@
         <script src="{% static 'breakpoints.min.js' %}"></script>
         <script src="{% static 'util.js' %}"></script>
         <script src="{% static 'main.js' %}"></script>  
+        <script src="{% static 'camara.js' %}"></script>
 
 </body>
 
