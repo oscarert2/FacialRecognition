@@ -8599,3 +8599,19 @@ input, select, textarea {
 			#wrapper.divided > .invert:first-child {
 				box-shadow: none !important;
 			}
+
+.start-camera{
+	padding : 10px;
+}
+
+.video{
+	padding: 10px;
+}
+
+.click-photo{
+	padding: 10px;
+}
+
+.canvas{
+	padding: 10px;
+}
