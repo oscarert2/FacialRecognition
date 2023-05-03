@@ -14,6 +14,7 @@ Similiarity(numpy.asarray([1,2,3]),numpy.asarray([1,2,3]))
 
 # Leemos el dataset ya codificado
 DF = pandas.read_csv("Faces.csv")
+filtered_df = DF[DF['File'].str.contains('A01369422')]
 # Demostracion la cara de el renglon 9
 print(DF.loc[[9], "File"])
 # Demostracion el vector de la cara 8
