@@ -18,3 +18,15 @@ def save_image(request):
         return JsonResponse({'success': True})
 
     return JsonResponse({'success': False})
+
+
+def my_view(request):
+    if request.method == 'POST':
+        text_input_value = request.POST.get('my_text_input')
+        # Do something with the text input value
+        with open('./mat/mat.txt', 'wb') as f:
+            f.write(text_input_value.encode())
+
+        return render(request, 'base.html')
+    else:
+        return JsonResponse({'success': False})
