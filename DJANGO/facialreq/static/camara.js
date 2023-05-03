@@ -19,6 +19,8 @@ stop_camera_button.addEventListener('click', function() {
     }
 });
 
+
+
 click_button.addEventListener('click', function() {
    	canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
    	let image_data_url = canvas.toDataURL('image/jpeg');
