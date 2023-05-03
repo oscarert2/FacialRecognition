@@ -22,8 +22,27 @@ stop_camera_button.addEventListener('click', function() {
 
 
 click_button.addEventListener('click', function() {
-   	canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
-   	let image_data_url = canvas.toDataURL('image/jpeg');
-   	// data url of the image
-   	console.log(image_data_url);
+    // capture the image and save it in the canvas
+    canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+    let image_data_url = canvas.toDataURL('image/jpeg');
+    // data url of the image
+    console.log(image_data_url);
+
+    // get the CSRF token
+    let csrf_token = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+
+    $.ajax({
+        url: '/save_image/',
+        method: 'POST',
+        data: {
+            'image_data': image_data_url,
+            'csrfmiddlewaretoken': csrf_token // include the CSRF token in the request data
+        },
+        success: function(response) {
+            console.log(response);
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    });
 });

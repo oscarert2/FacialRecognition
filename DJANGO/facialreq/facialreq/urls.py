@@ -17,8 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from facialreq.views import home 
+from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home),
+    path('save_image/', views.save_image, name='save_image'),
 ]
