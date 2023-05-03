@@ -21,6 +21,7 @@ stop_camera_button.addEventListener('click', function() {
 
 
 
+
 click_button.addEventListener('click', function() {
     // capture the image and save it in the canvas
     canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
