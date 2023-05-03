@@ -1,25 +1,73 @@
+from IPython.lib.display import FileLinks
+import pandas
+import numpy
+import cv2
+import face_recognition
 import glob
 from matplotlib import pyplot
-import skimage
-import numpy
 
-Files = glob.glob("D:\Github_desktop\FacialRecognition\DJANGO\facialreq\face_imgs\TC3002B_Faces/*/*.jpg")
+# Esto solo se hace una vez en el BackEnd
 
-fig, ax = pyplot.subplots(4,5, figsize = [9,6] );
+def DesignMatrix(Options):
+  SPath = Options.SPath # Source path todas las imagenes
+  #Files = glob.glob(SPath + "**/**.jpg")
+  Files = glob.glob("face_imgs/TC3002B_Faces/*/*.jpg")
+  OutFile = Options.OutFile # Nombre del archivo de salida en CSV
+  X = [] # Matriz de diseño vacia
+  L = [] # Etiquetas de a quien pertenece la fotografia
+  for File in Files:
+    # Leer la imagen de la cara y guardala en la matrix X como un vector
+    #x = numpy.random.rand(512);
+    try:
+      x = Image2Vector(File)
+    except:
+      continue
+    X.append(x)
+    L.append(File)
+    print(File)
 
-ny = 600;
+  DF = pandas.DataFrame(X)
+  DF.insert(0,"File",L)
+  DF.to_csv(Options.OutFile, index = False)
 
-print(len(Files))
+def Image2Vector(File):
+  I = cv2.imread(File) # Leer la imagen de la foto
+  AR = 480 / I.shape[1] # Aspect Ratio
+  width = int(I.shape[1] * AR)
+  height = int(I.shape[0] * AR)
+  # Reescalamiento
+  I = cv2.resize(I, (width,height), interpolation = cv2.INTER_AREA)
+  cv2.imwrite("temp.jpg", I)
+  # Guardar archivo temporal de la imagen guardada
+  FID = face_recognition.load_image_file("temp.jpg") # carga de imagen reescalada
+  Locations = face_recognition.face_locations(FID)
+  FaceVectors = face_recognition.face_encodings(FID, Locations)
+  x = FaceVectors[0]
+  return x
 
-for k in range(ax.size):
-    if k < len(Files):
-        I = skimage.io.imread(Files[k])
-        nx = I.shape[1]/I.shape[0] * ny 
-        I = skimage.transform.resize(I, (ny,nx))
-        j = k // ax.shape[0]
-        i = k % ax.shape[0]
-        ax[i,j].imshow(I)
-        ax[i,j].axis("off")
-        ax[i,j].set_title(Files[k].split("/")[1])
+def Similiarity(a,b):
+  # metrica de similitud
+  # depende de la naturaleza del manifold
+  # puede ser que se haga pequeña (caso L2) o se haga grande (caso Producto interno)
+  # Tarea: tener varias metricas en esta funcion para seleccionar una
+  return numpy.linalg.norm(a-b)
 
-pyplot.show()
+
+# Llamada de la function para generar la matriz de diseño
+
+class Opt:
+  pass
+
+Options = Opt
+
+Options.SPath = "TC3002B_Faces/"
+Options.OutFile = "Faces.csv"
+
+DesignMatrix(Options)
+
+
+Similiarity(numpy.asarray([1,2,3]),numpy.asarray([1,2,3]))
+
+# Tarea: buscar una metrica que de cercano a uno cuando los vectores son mas similares entre si
+
+
