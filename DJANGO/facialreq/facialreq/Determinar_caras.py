@@ -46,6 +46,5 @@ Sim = numpy.asarray(Sim)
 
 Idx = numpy.argsort(Sim)
 
-DF.iloc[Idx[0:5]]
-
+print(DF.iloc[Idx[:5]])
 
