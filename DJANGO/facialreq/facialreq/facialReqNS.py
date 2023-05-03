@@ -66,8 +66,5 @@ Options.OutFile = "Faces.csv"
 DesignMatrix(Options)
 
 
-Similiarity(numpy.asarray([1,2,3]),numpy.asarray([1,2,3]))
-
-# Tarea: buscar una metrica que de cercano a uno cuando los vectores son mas similares entre si
 
 
