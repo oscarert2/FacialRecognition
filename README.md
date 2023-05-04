@@ -1,5 +1,9 @@
 Face Recognition App
 
+View the working project on this github pages.
+
+https://oscarert2.github.io/FacialRecognition/
+
 This is a face recognition app built with Django and various Python libraries. It allows users to take a photo with their webcam and compare it to a database of stored images to find the closest match.
 Installation
 
