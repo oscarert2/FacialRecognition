@@ -1,39 +1,32 @@
+Face Recognition App
 
-```markdown
-# FaceRec
-FaceRec is a facial recognition software that can identify and verify faces from images. It uses deep learning models and computer vision techniques to achieve high accuracy and speed.
+This is a face recognition app built with Django and various Python libraries. It allows users to take a photo with their webcam and compare it to a database of stored images to find the closest match.
+Installation
 
-## Features
-- Face detection: Locate and crop faces from images or videos.
-- Face alignment: Align faces to a standard pose and scale for better recognition.
-- Face embedding: Extract features from faces using a pre-trained neural network.
-- Face matching: Compare face embeddings and compute similarity scores.
-- Face verification: Verify if two faces belong to the same person or not.
-- Face identification: Identify the person who owns a face from a database of known faces.
+    Install Python 3 on your computer.
+    Install pipenv by running pip install pipenv in your terminal or command prompt.
+    Clone this repository to your local machine.
+    Navigate to the project directory in your terminal or command prompt.
+    Run pipenv shell to create a virtual environment.
+    Run pipenv install to install all the required libraries and dependencies, including Django, NumPy, OpenCV, and face_recognition.
 
-## Installation
-To install FaceRec, you need to have Python 3.6 or higher and pip installed on your system. Then, run the following command:
+Usage
 
-`pip install facerec`
+    Once you have installed all the necessary libraries and dependencies, run the command python manage.py runserver in your terminal or command prompt to start the Django development server.
+    Open your web browser and go to http://localhost:8000 to access the app.
+    Click on the "Start Camera" button to activate your webcam and take a photo.
+    Once you have taken a photo, click on the "Recognize" button to compare it to the stored images in the database.
+    The app will display the closest match, along with a percentage indicating the degree of similarity.
 
-This will install FaceRec and its dependencies, such as numpy, opencv, tensorflow, etc.
+Libraries Used
 
-## Usage
-To use FaceRec, you need to import the facerec module in your Python script. For example:
+    Django
+    NumPy
+    OpenCV
+    face_recognition
+    Matplotlib
+    scikit-learn
+    Pandas
+    Pickle
 
-`import facerec`
-
-Then, you can create a FaceRec object and use its methods to perform facial recognition tasks. For example:
-
-`fr = facerec.FaceRec() # create a FaceRec object`
-
-`img = fr.load_image("test.jpg") # load an image`
-
-`faces = fr.detect_faces(img) # detect faces in the image`
-
-`for face in faces:`
-
-    `aligned_face = fr.align_face(face) # align the face`
-    `embedding = fr.get_embedding(aligned_face) # get the face embedding`
-    `name = fr.identify_face(embedding) # identify the face`
-    `print(name) # print the name of the person`
+Note: All the required libraries are included in the Pipfile and will be installed automatically when running pipenv install.
