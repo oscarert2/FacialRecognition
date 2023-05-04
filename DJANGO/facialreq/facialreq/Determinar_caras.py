@@ -3,6 +3,8 @@ import pickle
 from sklearn.decomposition import PCA
 import numpy
 
+from facialReqNS import *
+
 def Similiarity(a,b):
   # metrica de similitud
   # depende de la naturaleza del manifold
@@ -16,7 +18,7 @@ Similiarity(numpy.asarray([1,2,3]),numpy.asarray([1,2,3]))
 DF = pandas.read_csv("Faces.csv")
 filtered_df = DF[DF['File'].str.contains('A01369422')]
 # Demostracion la cara de el renglon 9
-print(DF.loc[[9], "File"])
+#print(DF.loc[[9], "File"])
 # Demostracion el vector de la cara 8
 xq = numpy.asarray(DF.iloc[[9],1:])[0]
 # Elimino de la base de datos la cara a buscar
@@ -47,5 +49,23 @@ Sim = numpy.asarray(Sim)
 
 Idx = numpy.argsort(Sim)
 
-print(DF.iloc[Idx[:5]])
+#print(DF.iloc[Idx[:5]])
+
+
+
+
+I = cv2.imread("../images/image.jpg") # Leer la imagen de la foto
+AR = 480 / I.shape[1] # Aspect Ratio
+width = int(I.shape[1] * AR)
+height = int(I.shape[0] * AR)
+# Reescalamiento
+I = cv2.resize(I, (width,height), interpolation = cv2.INTER_AREA)
+cv2.imwrite("temp.jpg", I)
+# Guardar archivo temporal de la imagen guardada
+FID = face_recognition.load_image_file("temp.jpg") # carga de imagen reescalada
+Locations = face_recognition.face_locations(FID)
+FaceVectors = face_recognition.face_encodings(FID, Locations)
+x = FaceVectors[0]
+
+print(x)
 
