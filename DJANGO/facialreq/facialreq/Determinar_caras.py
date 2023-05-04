@@ -54,15 +54,7 @@ Model = pickle.load( open( "PCAModel.p", "rb" ) )
 
 X_hat = Model.transform(X);
 
-
-
-
-#print(X_hat)
-#print(X)
 xq = Model.transform(xr.reshape(1, -1))
-
-#print("xq")
-#print(xq)
 
 Sim = [] # Arreglo de similitud
 
@@ -82,9 +74,16 @@ print(DF.iloc[Idx[:5]])
 
 
 #El valor de la imagen mas parecida
-print(Sim[Idx[0]])
+#print(Sim[Idx[0]])
+#print(Sim)
+resu = (Sim[Idx[0]]/Sim[Idx[43]])*100
 
-resu = 100 - Sim[Idx[0]]
+#print(Sim[Idx[0]])
+#print(Sim[Idx[43]])
+resultadobien= 100-resu
+print("Resultado :",resultadobien,"%")
 
-print("Resultado :",resu,"%")
-
+if resultadobien > 90:
+  print("Te la creo")
+else:
+  print("No son los mismos")
