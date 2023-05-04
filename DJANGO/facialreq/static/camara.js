@@ -3,15 +3,16 @@ let video = document.querySelector("#video");
 let click_button = document.querySelector("#click-photo");
 let canvas = document.querySelector("#canvas");
 let stop_camera_button = document.querySelector("#stop-camera");
+let results_button = document.querySelector("#results-button");
 let stream;
 
-camera_button.addEventListener('click', async function() {
-   	stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
-	video.srcObject = stream;
+camera_button.addEventListener('click', async function () {
+    stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+    video.srcObject = stream;
 });
 
-stop_camera_button.addEventListener('click', function() {
-	if (stream) {
+stop_camera_button.addEventListener('click', function () {
+    if (stream) {
         stream.getTracks().forEach(track => {
             track.stop();
         });
@@ -22,7 +23,7 @@ stop_camera_button.addEventListener('click', function() {
 
 
 
-click_button.addEventListener('click', function() {
+click_button.addEventListener('click', function () {
     // capture the image and save it in the canvas
     canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
     let image_data_url = canvas.toDataURL('image/jpeg');
@@ -39,11 +40,18 @@ click_button.addEventListener('click', function() {
             'image_data': image_data_url,
             'csrfmiddlewaretoken': csrf_token // include the CSRF token in the request data
         },
-        success: function(response) {
+        success: function (response) {
             console.log(response);
         },
-        error: function(error) {
+        error: function (error) {
             console.log(error);
         }
     });
+});
+
+
+results_button.addEventListener('click', function () {
+    console.log("works?");
+    //window.location.href = "{% url 'results' %}";
+    window.location.href = "/results";
 });
