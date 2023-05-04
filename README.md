@@ -32,7 +32,7 @@ Usage
 
 click results to view if the face was in the database
 
-![Alt text](https://www.overleaf.com/project/643622f004d6ff64648c887c/file/64532b812a3f86849d807f32)
+![Alt text](https://media.discordapp.net/attachments/410145817501106186/1103802843590299718/image.png?width=705&height=476)
 
 Libraries Used
 
