@@ -46,10 +46,6 @@ def Image2Vector(File):
   return x
 
 def Similiarity(a,b):
-  # metrica de similitud
-  # depende de la naturaleza del manifold
-  # puede ser que se haga pequeña (caso L2) o se haga grande (caso Producto interno)
-  # Tarea: tener varias metricas en esta funcion para seleccionar una
   return numpy.linalg.norm(a-b)
 
 

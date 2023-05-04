@@ -6,10 +6,6 @@ import numpy
 from facialReqNS import *
 
 def Similiarity(a,b):
-  # metrica de similitud
-  # depende de la naturaleza del manifold
-  # puede ser que se haga pequeña (caso L2) o se haga grande (caso Producto interno)
-  # Tarea: tener varias metricas en esta funcion para seleccionar una
   return numpy.linalg.norm(a-b)
 
 Similiarity(numpy.asarray([1,2,3]),numpy.asarray([1,2,3]))
@@ -28,21 +24,11 @@ Locations = face_recognition.face_locations(FID)
 FaceVectors = face_recognition.face_encodings(FID, Locations)
 xr = FaceVectors[0]
 
-print(xr)
-
-
-
-
 # Leemos el dataset ya codificado
 DF = pandas.read_csv("Faces.csv")
 filtered_df = DF[DF['File'].str.contains('A01369422')]
-# Demostracion la cara de el renglon 9
-#print(DF.loc[[9], "File"])
-# Demostracion el vector de la cara 8
 xq = numpy.asarray(DF.iloc[[9],1:])[0]
-# Elimino de la base de datos la cara a buscar
-DF = DF.drop([9]) # Quita la cara de la persona a buscar
-# Reset a los indices
+DF = DF.drop([9]) 
 DF = DF.reset_index(drop =True)
 
 # Extraer la matriz de diseño del dataframe
@@ -58,7 +44,6 @@ xq = Model.transform(xr.reshape(1, -1))
 
 Sim = [] # Arreglo de similitud
 
-# Tarea quitar este ciclo for de las lineas 24 - 31 (Participacion)
 
 for xi in X_hat:
   sim = Similiarity(xq, xi)
@@ -70,16 +55,12 @@ Idx = numpy.argsort(Sim)
 
 print(DF.iloc[Idx[:5]])
 
-#print(Idx)
-
 
 #El valor de la imagen mas parecida
 #print(Sim[Idx[0]])
 #print(Sim)
-resu = (Sim[Idx[0]]/Sim[Idx[43]])*100
+resu = (Sim[Idx[0]]/(Sim[Idx[43]]))*100
 
-#print(Sim[Idx[0]])
-#print(Sim[Idx[43]])
 resultadobien= 100-resu
 print("Resultado :",resultadobien,"%")
 
