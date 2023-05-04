@@ -3,7 +3,8 @@ import pickle
 from sklearn.decomposition import PCA
 import numpy
 import os
-from django.conf import settings
+from .settings import *
+
 
 from .facialReqNS import *
 
@@ -13,8 +14,10 @@ def Similiarity(a,b):
 Similiarity(numpy.asarray([1,2,3]),numpy.asarray([1,2,3]))
 
 def conestojala():
-  img_path = os.path.join(settings.PROJECT_ROOT, "../images/image.jpg")
-  I = cv2.imread(img_path) # Leer la imagen de la foto
+  img_path = os.path.join(PROJECT_ROOT, "..\images\image.jpg")
+  #print(img_path)
+  I = cv2.imread(img_path)
+   # Leer la imagen de la foto
   AR = 480 / I.shape[1] # Aspect Ratio
   width = int(I.shape[1] * AR)
   height = int(I.shape[0] * AR)
@@ -28,7 +31,8 @@ def conestojala():
   xr = FaceVectors[0]
 
   # Leemos el dataset ya codificado
-  DF = pandas.read_csv("Faces.csv")
+  csvurl = os.path.join(PROJECT_ROOT, "Faces.csv")
+  DF = pandas.read_csv(csvurl)
   filtered_df = DF[DF['File'].str.contains('A01369422')]
   xq = numpy.asarray(DF.iloc[[9],1:])[0]
   DF = DF.drop([9]) 
@@ -39,7 +43,8 @@ def conestojala():
 
   # carga del modelo
 
-  Model = pickle.load( open( "PCAModel.p", "rb" ) )
+  modelurl = os.path.join(PROJECT_ROOT, "PCAModel.p")
+  Model = pickle.load( open( modelurl, "rb" ) )
 
   X_hat = Model.transform(X);
 
@@ -58,7 +63,6 @@ def conestojala():
 
   print(DF.iloc[Idx[:5]])
 
-
   #El valor de la imagen mas parecida
   #print(Sim[Idx[0]])
   #print(Sim)
@@ -68,6 +72,12 @@ def conestojala():
   print("Resultado :",resultadobien,"%")
 
   if resultadobien > 90:
-    print("Te la creo")
+    m = "Te la creo, identificación aprobada"
   else:
-    print("No son los mismos")
+    m = "No son los mismos, Denegado"
+
+  print(m)
+  resultadobien = int(resultadobien)
+  return resultadobien, m
+
+conestojala()

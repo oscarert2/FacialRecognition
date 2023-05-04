@@ -2,6 +2,7 @@ from django.shortcuts import render
 import base64
 from django.http import JsonResponse
 from .Determinar_caras import *
+from .settings import *
 
 
 def home(request):
@@ -34,8 +35,10 @@ def my_view(request):
     
     
 def results(request):
-    with open('./images/image.jpg', 'wb') as f:
-        conestojala()
 
-    return render(request, 'results.html')
+    r, m = conestojala()
+    print(r)
+
+    return render(request, 'results.html', {"r":r , "m":m}  )
+
 
