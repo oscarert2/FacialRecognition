@@ -30,3 +30,7 @@ def my_view(request):
         return render(request, 'base.html')
     else:
         return JsonResponse({'success': False})
+    
+    
+def results(request):
+    return render(request, 'results.html')
